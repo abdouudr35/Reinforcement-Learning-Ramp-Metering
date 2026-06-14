@@ -62,7 +62,7 @@ The discrete action space consists of 3 actions regulating the ramp traffic ligh
 
 ### 3. Reward Functions
 * **Q-Learning (Final Phase):** Evaluated via a scaled combination of traffic metrics:
-```text
+
   R = 10 * (1 - highway_flow / max_highway_flow) + 5 * avg_speed - 5 * (ramp_queue / max_ramp_queue)
 * **DQN:** Formulated using a heavily weighted objective function:
   $$\text{Reward} = 2 \times \text{Avg Speed} + 7 \times \text{Highway Flow} - 5 \times \text{Ramp Queue}$$
