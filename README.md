@@ -61,12 +61,30 @@ The discrete action space consists of 3 actions regulating the ramp traffic ligh
 
 ### 3. Reward Functions
 
-* **Q-Learning (Final Phase):** Evaluated via a scaled combination of traffic metrics:
+* **Q-Learning (Final Phase):**
+`R = 10 * (1 - highway_flow / max_highway_flow) + 5 * avg_speed - 5 * (ramp_queue / max_ramp_queue)`
+
+* **DQN:**
+`Reward = 2 * Avg_Speed + 7 * Highway_Flow - 5 * Ramp_Queue`
+
+---
+
+## 📈 Algorithms & Implementation
+
+### 🔬 Tabular Q-Learning
+Implemented with an epsilon-greedy exploration policy. Five iterations were executed, progressively tuning learning factors, decaying schedules, and shifting configurations from broad exploration to localized policy exploitation. The final test reached high reward optimization and balanced traffic stabilization over a 100-episode training execution.
+
+### 🤖 Deep Q-Network (DQN)
+Designed to accommodate large, high-dimensional continuous state observations:
+* **Architecture:** Input layer (3 nodes) -> Two Hidden Layers (24 neurons each, ReLU activated) -> Output layer (3 nodes, linear activation mapping Q-values).
+* **Loss & Optimizer:** Mean Squared Error (MSE) minimized via the Adam optimizer.
+* **Stability Mechanisms:** Employs an Experience Replay Buffer to eliminate consecutive sample correlations and a decoupled Target Network updated less frequently to stabilize policy gradients.
+
+---
+
+## 📁 Repository Structure
+
 ```text
-R = 10 * (1 - highway_flow / max_highway_flow) + 5 * avg_speed - 5 * (ramp_queue / max_ramp_queue)
-
-
-
 ├── Project RL/
 │   ├── code/
 │   │   ├── Deep Q Learning.ipynb         # DQN agent architecture and training loop
