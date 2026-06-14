@@ -59,9 +59,11 @@ The discrete action space consists of 3 actions regulating the ramp traffic ligh
 * **Action 1:** Yellow Light (Transition phase).
 * **Action 2:** Red Light (Stop ramp traffic).
 
+
 ### 3. Reward Functions
 * **Q-Learning (Final Phase):** Evaluated via a scaled combination of traffic metrics:
-  $$R = 10 \cdot \left(1 - \frac{\text{highway\_flow}}{\text{max\_highway\_flow}}\right) + 5 \cdot \text{avg\_speed} - 5 \cdot \frac{\text{ramp\_queue}}{\text{max\_ramp\_queue}}$$
+```text
+  R = 10 * (1 - highway_flow / max_highway_flow) + 5 * avg_speed - 5 * (ramp_queue / max_ramp_queue)
 * **DQN:** Formulated using a heavily weighted objective function:
   $$\text{Reward} = 2 \times \text{Avg Speed} + 7 \times \text{Highway Flow} - 5 \times \text{Ramp Queue}$$
 
